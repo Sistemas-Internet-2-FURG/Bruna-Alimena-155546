@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Sessão</title>
+</head>
+<body>
+    <h1>Adicionar Sessão</h1>
+    <form action="{{ url_for('create_aisle') }}" method="post">
+        <label for="name">Nome da Sessão:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="aisle">Corredor:</label>
+        <input type="text" id="aisle" name="aisle" required><br>
+        <button type="submit">Adicionar Sessão</button>
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Voltar para a lista de produtos</a>
+</body>
+</html>

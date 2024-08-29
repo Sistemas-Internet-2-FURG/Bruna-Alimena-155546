@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Produtos Disponíveis</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                        <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Sessão</th>
+            <th>Corredor</th>
+            <th>Ações</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id_produto }}</td>
+            <td>{{ product.nome_produto }}</td>
+            <td>{{ product.quantidade_produto }}</td>
+            <td>{{ product.nome_sessao }}</td>
+            <td>{{ product.corredor_sessao }}</td>
+            <td>
+                <a href="{{ url_for('update_product', id=product.id_produto) }}">Editar</a>
+                <form action="{{ url_for('delete_product', id=product.id_produto) }}" method="post" style="display:inline;">
+                    <button type="submit">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Sessões</h2>
+<ul>
+    {% for sessao in sessions %}
+    <li>
+        {{ sessao.nome_sessao }} - Corredor: {{ sessao.corredor_sessao }}
+        <a href="{{ url_for('update_aisle', id=sessao.id_sessao) }}">Editar Sessão</a> 
+        <form action="{{ url_for('delete_aisle', id=sessao.id_sessao) }}" method="post" style="display:inline;">
+            <button type="submit">Excluir Sessão</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+    <br>
+    <a href="{{ url_for('create_product') }}">Adicionar Produto</a> |
+    <a href="{{ url_for('create_aisle') }}">Adicionar Sessão</a> |
+    <a href="{{ url_for('logout') }}">Logout</a> 
+</body>
+</html>

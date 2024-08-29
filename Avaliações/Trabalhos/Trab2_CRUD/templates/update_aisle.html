@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Sessão</title>
+</head>
+<body>
+    <h1>Editar Sessão</h1>
+    <form method="post">
+        <label for="name">Nome da Sessão:</label>
+        <input type="text" name="name" value="{{ aisle.nome_sessao }}" required>
+        <br>
+        <label for="aisle">Número do Corredor:</label>
+        <input type="text" name="aisle" value="{{ aisle.corredor_sessao }}" required>
+        <br>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+    <a href="{{ url_for('index') }}">Cancelar</a>
+</body>
+</html>
